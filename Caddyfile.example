@@ -1,0 +1,5 @@
+# Copy to Caddyfile on a host running Caddy. Replace with your real domain.
+chat.example.com {
+    encode zstd gzip
+    reverse_proxy 127.0.0.1:8000
+}

@@ -1,0 +1,34 @@
+services:
+  - type: web
+    name: relaychat-x-api
+    runtime: docker
+    plan: starter
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: APP_SECRET
+        generateValue: true
+      - key: APP_BASE_URL
+        sync: false
+      - key: PAIR_BASE_URL
+        value: https://qr-scanner-auyrwhk4xwsrrxkg68i2wt.streamlit.app
+      - key: PAIR_SCAN_PATH
+        value: ""
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: WEBAUTHN_RP_ID
+        sync: false
+      - key: WEBAUTHN_RP_NAME
+        value: RelayChat X
+      - key: DATABASE_URL
+        value: sqlite:////var/data/data/relaychat.db
+      - key: DATA_DIR
+        value: /var/data/data
+      - key: UPLOAD_DIR
+        value: /var/data/uploads
+      - key: MAX_UPLOAD_MB
+        value: "12"
+    disk:
+      name: relaychat-x-data
+      mountPath: /var/data
+      sizeGB: 1
